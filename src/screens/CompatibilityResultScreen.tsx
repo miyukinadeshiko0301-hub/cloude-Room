@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
-import { colors, spacing } from '../theme/theme';
+import { colors, spacing, cardShadow } from '../theme/theme';
 import { loadProfiles } from '../storage/profileStore';
 import { BirthProfile } from '../types/profile';
 import { runFullAnalysis } from '../engine/fullAnalysis';
@@ -37,7 +37,7 @@ export default function CompatibilityResultScreen({ route }: Props) {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: spacing(2), paddingBottom: spacing(6) }}>
-      <Text style={styles.namesLine}>{profileA.name} × {profileB.name}</Text>
+      <Text style={styles.namesLine}>{profileA.name} 💞 {profileB.name}</Text>
 
       <View style={styles.scoreCard}>
         <Text style={styles.scoreLabel}>総合相性スコア</Text>
@@ -64,15 +64,17 @@ const styles = StyleSheet.create({
   loading: { color: colors.textMuted, margin: spacing(2) },
   namesLine: { color: colors.text, fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: spacing(2) },
   scoreCard: {
-    backgroundColor: colors.surfaceAlt, borderRadius: 16, padding: spacing(2.5),
-    alignItems: 'center', marginBottom: spacing(2), borderWidth: 1, borderColor: colors.primary,
+    backgroundColor: colors.surfaceAlt, borderRadius: 24, padding: spacing(2.5),
+    alignItems: 'center', marginBottom: spacing(2), borderWidth: 1.5, borderColor: colors.primary,
+    ...cardShadow,
   },
   scoreLabel: { color: colors.textMuted },
-  scoreValue: { color: colors.accent, fontSize: 48, fontWeight: '900', marginVertical: spacing(0.5) },
+  scoreValue: { color: colors.primary, fontSize: 48, fontWeight: '900', marginVertical: spacing(0.5) },
   scoreComment: { color: colors.text, textAlign: 'center', marginTop: spacing(1), lineHeight: 21 },
   card: {
-    backgroundColor: colors.surface, borderRadius: 14, padding: spacing(2),
+    backgroundColor: colors.surface, borderRadius: 20, padding: spacing(2),
     marginBottom: spacing(1.5), borderWidth: 1, borderColor: colors.border,
+    ...cardShadow,
   },
   cardHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   cardTitle: { color: colors.accent, fontWeight: '800', fontSize: 15 },

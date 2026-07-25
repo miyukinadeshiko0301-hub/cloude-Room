@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
-import { colors, spacing } from '../theme/theme';
+import { colors, spacing, cardShadow } from '../theme/theme';
 import { loadProfiles } from '../storage/profileStore';
 import { BirthProfile } from '../types/profile';
 import { runFullAnalysis, FullAnalysisResult } from '../engine/fullAnalysis';
@@ -12,6 +12,9 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Result'>;
 
 const TABS = ['総合', '動物占い', '四柱推命', '占星術', 'マヤ暦', '算命学'] as const;
 type Tab = (typeof TABS)[number];
+const TAB_EMOJI: Record<Tab, string> = {
+  総合: '💖', 動物占い: '🐾', 四柱推命: '☯️', 占星術: '✨', マヤ暦: '🌞', 算命学: '🀄',
+};
 
 function Card({ title, children }: { title?: string; children: React.ReactNode }) {
   return (
@@ -59,7 +62,7 @@ export default function ResultScreen({ route, navigation }: Props) {
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabBar} contentContainerStyle={{ paddingHorizontal: spacing(1) }}>
         {TABS.map((t) => (
           <TouchableOpacity key={t} style={[styles.tab, tab === t && styles.tabActive]} onPress={() => setTab(t)}>
-            <Text style={[styles.tabText, tab === t && styles.tabTextActive]}>{t}</Text>
+            <Text style={[styles.tabText, tab === t && styles.tabTextActive]}>{TAB_EMOJI[t]} {t}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -192,8 +195,9 @@ const styles = StyleSheet.create({
   tabText: { color: colors.textMuted, fontWeight: '600' },
   tabTextActive: { color: colors.primary },
   card: {
-    backgroundColor: colors.surface, borderRadius: 14, padding: spacing(2),
+    backgroundColor: colors.surface, borderRadius: 20, padding: spacing(2),
     marginBottom: spacing(1.5), borderWidth: 1, borderColor: colors.border,
+    ...cardShadow,
   },
   cardTitle: { color: colors.accent, fontWeight: '800', fontSize: 15, marginBottom: spacing(1) },
   cardHeadline: { color: colors.text, fontWeight: '700', fontSize: 15, marginBottom: spacing(0.5) },

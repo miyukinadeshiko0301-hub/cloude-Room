@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types';
 import { colors } from '../theme/theme';
@@ -12,9 +12,9 @@ import CompatibilityResultScreen from '../screens/CompatibilityResultScreen';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const navTheme = {
-  ...DarkTheme,
+  ...DefaultTheme,
   colors: {
-    ...DarkTheme.colors,
+    ...DefaultTheme.colors,
     background: colors.background,
     card: colors.surface,
     text: colors.text,
@@ -33,10 +33,10 @@ export default function RootNavigator() {
           contentStyle: { backgroundColor: colors.background },
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: '統合占いアプリ' }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: '🔮 統合占いアプリ' }} />
         <Stack.Screen name="Input" component={InputScreen} options={{ title: '生年月日を入力' }} />
         <Stack.Screen name="Result" component={ResultScreen} options={{ title: '診断結果' }} />
-        <Stack.Screen name="Compatibility" component={CompatibilityScreen} options={{ title: '相性診断' }} />
+        <Stack.Screen name="Compatibility" component={CompatibilityScreen} options={{ title: '💞 相性診断' }} />
         <Stack.Screen name="CompatibilityResult" component={CompatibilityResultScreen} options={{ title: '相性診断の結果' }} />
       </Stack.Navigator>
     </NavigationContainer>

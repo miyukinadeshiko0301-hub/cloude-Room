@@ -1,13 +1,22 @@
 export const colors = {
-  background: '#12071f',
-  surface: '#1e1033',
-  surfaceAlt: '#2a1747',
-  primary: '#b48cff',
-  accent: '#ffd27a',
-  text: '#f4eeff',
-  textMuted: '#c3b3e6',
-  border: '#3c2861',
-  danger: '#ff8a8a',
+  background: '#fff5f8',
+  surface: '#ffffff',
+  surfaceAlt: '#ffe9f2',
+  primary: '#ff8fab',
+  onPrimary: '#ffffff',
+  accent: '#ffb4a2',
+  text: '#5b4655',
+  textMuted: '#a889a0',
+  border: '#ffd9e8',
+  danger: '#ff7a8a',
 };
 
 export const spacing = (n: number) => n * 8;
+
+export const cardShadow = {
+  shadowColor: '#e39ab8',
+  shadowOffset: { width: 0, height: 3 },
+  shadowOpacity: 0.15,
+  shadowRadius: 8,
+  elevation: 2,
+};
